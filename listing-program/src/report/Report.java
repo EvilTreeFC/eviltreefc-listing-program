@@ -15,6 +15,7 @@ import world.World;
  * @see      main.Listing
  */
 public abstract class Report {
+	
 	/**
 	 * The {@code World} that is associated with this {@code Report}.
 	 */
