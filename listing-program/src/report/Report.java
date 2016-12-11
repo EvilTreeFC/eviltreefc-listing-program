@@ -39,6 +39,7 @@ public abstract class Report {
 	public void setWorld( int world ) {
 		this.world = new World( world );
 	} // end method setWorld(int):void
+	
 	/**
 	 * Standard set method
 	 * 
@@ -48,4 +49,9 @@ public abstract class Report {
 	public void setWorld( World world ) {
 		this.world = world;
 	} // end method setWorld(World):void
+	
+	/**
+	 * {@code String} representation of the {@code Report}.
+	 */
+	public abstract String toString();
 } // end class Report

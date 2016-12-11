@@ -13,5 +13,9 @@ package report;
  * @see      main.Listing
  */
 public class TimeReport extends Report {
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	} // end method toString():String
 } // end class TimeReport

@@ -13,5 +13,9 @@ package report;
  * @see      main.Listing
  */
 public class SaplingReport extends Report {
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	} // end method toString():String
 } // end class SaplingReport

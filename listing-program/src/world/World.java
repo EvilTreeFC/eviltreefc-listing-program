@@ -10,7 +10,6 @@ package world;
  *
  * @author   Ask Andreas Vargset
  * @version  2.0, 2016-12-11
- * @see      main.Listing
  * @see      report.Report
  * @see      world.Worlds
  */
@@ -38,10 +37,10 @@ public class World {
 	 *         The integer that is associated with this {@code World}.
 	 */
 	public void setWorld( int world ) {
-		if ( Worlds.isWorldValid( world ) ) {
+		if ( Worlds.isValid( world ) ) {
 			this.world = world;
 		} else {
-			// Either invalid world or illegal world (f2p, pvp, etc.)
+			// Either invalid world or illegal world (bounty, f2p or foreign).
 			throw new IllegalArgumentException();
 		} // end if...else
 	} // end method setWorld(int):void
@@ -54,4 +53,14 @@ public class World {
 	public int toInt() {
 		return world;
 	} // end method toInt():int
+	
+	/**
+	 * Standard toString method.
+	 * 
+	 * @return  Returns a {@code String} representation of this {@code World}.
+	 */
+	@Override
+	public String toString() {
+		return "W" + toInt();
+	} // end method toString():String
 } // end class World
