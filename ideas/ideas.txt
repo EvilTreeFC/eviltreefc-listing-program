@@ -1,0 +1,16 @@
+Optical Character Recognition (OCR) to read reports from the client (screep scraping)
+Include people from the fc to have their input, maybe even as testers.
+Make it an executable - portable if possible across platforms (linux, mac, windows...)
+Settings page/button
+Notification when a world is due?
+Display X most due worlds, only green worlds, all worlds?
+Red/Orange/Green worlds
+Micro page?
+Time displayed 3 options - remaining/euro/american time. Remaining as default. Change in settings?
+List panel - 3 tabs? Green reports, yellow and red - check box for which items u want?
+Two lists available - "normal list" ^ and "master list" which would just be a page of all worlds sorted by numbers where u can update
+Colour palette in (advanced) settings in case the user wants to customize the colours of the program's layout
+
+
+
+Gather ideas through mail, send new mail with strawpoll on each one!
