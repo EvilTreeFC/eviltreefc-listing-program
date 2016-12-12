@@ -7,7 +7,7 @@ package world;
 
 /**
  * This class represents a world in RuneScape.
- *
+ * 
  * @author   Ask Andreas Vargset
  * @version  2.0, 2016-12-11
  * @see      report.Report
