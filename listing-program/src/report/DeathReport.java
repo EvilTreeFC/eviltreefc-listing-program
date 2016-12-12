@@ -6,7 +6,7 @@
 package report;
 
 /**
- * XXX Test
+ * XXX Test 
  *
  * @author   Ask Andreas Vargset
  * @version  2.0, 2016-12-11
