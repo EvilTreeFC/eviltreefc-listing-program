@@ -52,7 +52,7 @@ public abstract class EvilTreePanel extends JPanel {
 		this.title = title;
 		layout = new GroupLayout( this );
 		border = BorderFactory.createTitledBorder(
-			null, this.title, TitledBorder.LEADING, TitledBorder.TOP,
+			null, this.title, TitledBorder.CENTER, TitledBorder.TOP,
 			TITLE_FONT );
 		
 		setLayout( layout );
