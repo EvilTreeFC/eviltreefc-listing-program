@@ -14,5 +14,29 @@ package gui;
  */
 @SuppressWarnings( "serial" )
 public class ButtonPanel extends EvilTreePanel {
-	
+	/**
+	 * Standard constructor.
+	 * 
+	 * @param  title
+	 *         The title of this panel.
+	 */
+	public ButtonPanel( String title ) {
+		super( title );
+	} // end constructor(String)
+
+	/**
+	 * XXX
+	 */
+	@Override
+	protected void initLayout() {
+		
+	} // end method initLayout():void
+
+	/**
+	 * XXX
+	 */
+	@Override
+	protected void createLayout() {
+		
+	} // end method createLayout():void
 } // end class ButtonPanel

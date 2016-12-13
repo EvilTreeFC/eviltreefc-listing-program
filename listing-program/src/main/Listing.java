@@ -16,6 +16,12 @@ import gui.ListingGUI;
  * @see      gui.ListingGUI
  */
 public class Listing {
+	/**
+	 * The version number of this application.
+	 */
+	public final static String version = "2.0";
+	
+	// Main method starts program execution.
 	public static void main( String[] args ) {
 		new ListingGUI();
 	} // end method main(String[]):void
