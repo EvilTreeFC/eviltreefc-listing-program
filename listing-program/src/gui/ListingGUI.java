@@ -9,7 +9,10 @@ import java.awt.Color;
 
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
-import javax.swing.LayoutStyle;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 
 /**
  * XXX
@@ -25,6 +28,9 @@ public class ListingGUI extends JFrame {
 	private CreditPanel creditPanel;
 	private GroupLayout layout;
 	private ListPanel listPanel;
+	
+	private ParallelGroup hpg, hpgInner, vpg, vpgInner;
+	private SequentialGroup hsg, vsg, vsgInner;
 
 	public ListingGUI() {
 		buttonPanel = new ButtonPanel( "Functions" );
@@ -44,41 +50,43 @@ public class ListingGUI extends JFrame {
 		layout = new GroupLayout( getContentPane() );
 		getContentPane().setLayout( layout );
 
-		// TODO: FIX THIS MESSY AUTO GENERATED CODE
+		// TODO: FIX THIS MESSY CODE
 		// adding / placing the panels on the horizontal line
-		layout.setHorizontalGroup(
-			layout.createParallelGroup( GroupLayout.Alignment.LEADING )
-			.addGroup( layout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false )
-					.addComponent( creditPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
-						GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent( buttonPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
-						GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE )
-					) // add group
-				.addPreferredGap( LayoutStyle.ComponentPlacement.RELATED )
-				.addComponent( listPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE )
-				.addContainerGap()
-				) // add group
-			); // end Horizontal group
+		hpg = layout.createParallelGroup( Alignment.LEADING );
+		hsg = layout.createSequentialGroup();
+		hsg.addContainerGap();
+		hpgInner = layout.createParallelGroup(Alignment.TRAILING, false );
+		hpgInner.addComponent( creditPanel, Alignment.LEADING,
+			GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+			Short.MAX_VALUE );
+		hpgInner.addComponent( buttonPanel, Alignment.LEADING,
+			GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+			Short.MAX_VALUE );
+		hsg.addGroup( hpgInner );
+		hsg.addPreferredGap( ComponentPlacement.RELATED );
+		hsg.addComponent( listPanel, GroupLayout.DEFAULT_SIZE,
+			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		hsg.addContainerGap();
+		hpg.addGroup( hsg );
+		layout.setHorizontalGroup( hpg ); // end Horizontal group
 
 		// adding / placing the panels on the vertical line
-		layout.setVerticalGroup(
-			layout.createParallelGroup( GroupLayout.Alignment.LEADING )
-			.addGroup( GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup( layout.createParallelGroup( GroupLayout.Alignment.TRAILING )
-					.addComponent( listPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE )
-					.addGroup( layout.createSequentialGroup()
-						.addComponent( buttonPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-							GroupLayout.PREFERRED_SIZE )
-						.addPreferredGap( LayoutStyle.ComponentPlacement.RELATED )
-						.addComponent( creditPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-							Short.MAX_VALUE )
-						) // add group
-					) // add group
-				.addContainerGap()
-				) // add group
-			); // end Vertical group
+		vpg = layout.createParallelGroup( Alignment.LEADING );
+		vsg = layout.createSequentialGroup();
+		vsg.addContainerGap();
+		vpgInner = layout.createParallelGroup( Alignment.TRAILING );
+		vpgInner.addComponent( listPanel, GroupLayout.DEFAULT_SIZE,
+			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		vsgInner = layout.createSequentialGroup();
+		vsgInner.addComponent( buttonPanel, GroupLayout.PREFERRED_SIZE,
+			GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
+		vsgInner.addPreferredGap( ComponentPlacement.RELATED );
+		vsgInner.addComponent( creditPanel, GroupLayout.DEFAULT_SIZE,
+			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		vpgInner.addGroup( vsgInner );
+		vsg.addGroup( vpgInner ) // add group
+				.addContainerGap();
+		vpg.addGroup( Alignment.TRAILING, vsg);
+		layout.setVerticalGroup( vpg ); // end Vertical group
 	} // end method createLayout():void
 } // end class ListingGUI
