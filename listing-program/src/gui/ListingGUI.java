@@ -3,7 +3,9 @@
  * All use without the author's permission is forbidden.
  */
 
-package report;
+package gui;
+
+import javax.swing.JFrame;
 
 /**
  * XXX
@@ -12,10 +14,7 @@ package report;
  * @version  2.0, 2016-12-11
  * @see      main.Listing
  */
-public class DeathReport extends Report {
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	} // end method toString():String
-} // end class DeathReport
+@SuppressWarnings( "serial" )
+public class ListingGUI extends JFrame {
+	
+} // end class ListingGUI

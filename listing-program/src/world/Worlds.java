@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2010, 2016, Ask Andreas Vargset and/or his affiliates.
- * All rights reserved.
+ * Copyright (c) 2010, 2016, Ask Andreas Vargset. All rights reserved.
+ * All use without the author's permission is forbidden.
  */
 
 package world;
@@ -24,7 +24,7 @@ public final class Worlds {
 	/**
 	 * Integer representations of free-to-play worlds in RuneScape.
 	 * 
-	 * Note: 55, 94 and 122 are also foreign {@code World}s.
+	 * Note: 55, 94 and 122 are also foreign worlds.
 	 */
 	public static final int[] f2pWorlds = { 3, 7, 8, 11, 17, 19, 20, 29, 33, 34,
 		38, 41, 43, 55, 57, 61, 80, 81, 94, 108, 120, 122, 135, 136, 141 };
@@ -46,8 +46,7 @@ public final class Worlds {
 	
 	/**
 	 * Constructor declared {@code private} in order to suppress the default
-	 * constructor, ensuring that {@code Worlds} cannot be
-	 * instantiated.
+	 * constructor, ensuring that class {@code Worlds} cannot be instantiated.
 	 */
 	private Worlds() {
 		

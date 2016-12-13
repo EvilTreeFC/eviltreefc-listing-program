@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2010, 2016, Ask Andreas Vargset and/or his affiliates.
- * All rights reserved.
+ * Copyright (c) 2010, 2016, Ask Andreas Vargset. All rights reserved.
+ * All use without the author's permission is forbidden.
  */
 
 package report;
