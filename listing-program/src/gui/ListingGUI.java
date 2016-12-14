@@ -26,6 +26,7 @@ public class ListingGUI extends JFrame {
 	public static final Color BG_COLOUR = new Color( 156, 193, 95 );
 	private ButtonPanel buttonPanel;
 	private CreditPanel creditPanel;
+	
 	private GroupLayout layout;
 	private ListPanel listPanel;
 	
@@ -33,10 +34,7 @@ public class ListingGUI extends JFrame {
 	private SequentialGroup hsg, vsg, vsgInner;
 
 	public ListingGUI() {
-		buttonPanel = new ButtonPanel( "Functions" );
-		creditPanel = new CreditPanel( "Credits" );
-		listPanel = new ListPanel( "The List" );
-
+		initLayout();
 		createLayout();
 
 		getContentPane().setBackground( BG_COLOUR );
@@ -45,48 +43,84 @@ public class ListingGUI extends JFrame {
 		setVisible( true );
 	} // end constructor()
 
-	private void createLayout() {
-		// TODO: try to remove contentPane after layout is done
-		layout = new GroupLayout( getContentPane() );
-		getContentPane().setLayout( layout );
-
-		// TODO: FIX THIS MESSY CODE
-		// adding / placing the panels on the horizontal line
-		hpg = layout.createParallelGroup( Alignment.LEADING );
-		hsg = layout.createSequentialGroup();
+	private void createHorizontalLayout() {
 		hsg.addContainerGap();
-		hpgInner = layout.createParallelGroup(Alignment.TRAILING, false );
+		
 		hpgInner.addComponent( creditPanel, Alignment.LEADING,
 			GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
 			Short.MAX_VALUE );
+		
 		hpgInner.addComponent( buttonPanel, Alignment.LEADING,
 			GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
 			Short.MAX_VALUE );
+		
 		hsg.addGroup( hpgInner );
 		hsg.addPreferredGap( ComponentPlacement.RELATED );
+		
 		hsg.addComponent( listPanel, GroupLayout.DEFAULT_SIZE,
 			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		
 		hsg.addContainerGap();
 		hpg.addGroup( hsg );
-		layout.setHorizontalGroup( hpg ); // end Horizontal group
+	} // end method createHorizontalLayout():void
 
-		// adding / placing the panels on the vertical line
-		vpg = layout.createParallelGroup( Alignment.LEADING );
-		vsg = layout.createSequentialGroup();
+	private void createLayout() {
+		// TODO: try to remove contentPane after layout is done
+		getContentPane().setLayout( layout );
+		
+		createHorizontalLayout();
+		createVerticalLayout();
+		
+		layout.setHorizontalGroup( hpg );
+		layout.setVerticalGroup( vpg );
+	} // end method createLayout():void
+
+	private void createVerticalLayout() {
 		vsg.addContainerGap();
-		vpgInner = layout.createParallelGroup( Alignment.TRAILING );
+		
 		vpgInner.addComponent( listPanel, GroupLayout.DEFAULT_SIZE,
 			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
-		vsgInner = layout.createSequentialGroup();
+		
 		vsgInner.addComponent( buttonPanel, GroupLayout.PREFERRED_SIZE,
 			GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
+		
 		vsgInner.addPreferredGap( ComponentPlacement.RELATED );
+		
 		vsgInner.addComponent( creditPanel, GroupLayout.DEFAULT_SIZE,
 			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		
 		vpgInner.addGroup( vsgInner );
-		vsg.addGroup( vpgInner ) // add group
-				.addContainerGap();
+		vsg.addGroup( vpgInner );
+		vsg.addContainerGap();
 		vpg.addGroup( Alignment.TRAILING, vsg);
-		layout.setVerticalGroup( vpg ); // end Vertical group
-	} // end method createLayout():void
+	} // end method createVerticalLayout():void
+
+	private void initGroups() {
+		layout = new GroupLayout( getContentPane() );
+		
+		hpg = layout.createParallelGroup( Alignment.LEADING );
+		hpgInner = layout.createParallelGroup( Alignment.TRAILING, false );
+		
+		vpg = layout.createParallelGroup( Alignment.LEADING );
+		vpgInner = layout.createParallelGroup( Alignment.TRAILING );
+		
+		hsg = layout.createSequentialGroup();
+		
+		vsg = layout.createSequentialGroup();
+		vsgInner = layout.createSequentialGroup();
+	} // end method initGroups():void
+
+	/**
+	 * Initialises instance variables needed for the layout.
+	 */
+	private void initLayout() {
+		initPanels();
+		initGroups();
+	} // end method initLayout():void
+
+	private void initPanels() {
+		buttonPanel = new ButtonPanel( "Functions" );
+		creditPanel = new CreditPanel( "Credits" );
+		listPanel = new ListPanel( "The List" );
+	} // end method initPanels():void
 } // end class ListingGUI
