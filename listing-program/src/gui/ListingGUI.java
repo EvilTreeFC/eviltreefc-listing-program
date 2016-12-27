@@ -9,10 +9,12 @@ import java.awt.Color;
 
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
-import javax.swing.LayoutStyle.ComponentPlacement;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * XXX
@@ -26,6 +28,7 @@ public class ListingGUI extends JFrame {
 	public static final Color BG_COLOUR = new Color( 156, 193, 95 );
 	private ButtonPanel buttonPanel;
 	private CreditPanel creditPanel;
+	private InputPanel inputPanel;
 	
 	private GroupLayout layout;
 	private ListPanel listPanel;
@@ -54,6 +57,10 @@ public class ListingGUI extends JFrame {
 			GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
 			Short.MAX_VALUE );
 		
+		hpgInner.addComponent( inputPanel, Alignment.LEADING,
+			GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+			Short.MAX_VALUE );
+		
 		hsg.addGroup( hpgInner );
 		hsg.addPreferredGap( ComponentPlacement.RELATED );
 		
@@ -62,6 +69,8 @@ public class ListingGUI extends JFrame {
 		
 		hsg.addContainerGap();
 		hpg.addGroup( hsg );
+		
+		layout.setHorizontalGroup( hpg );
 	} // end method createHorizontalLayout():void
 
 	private void createLayout() {
@@ -70,9 +79,6 @@ public class ListingGUI extends JFrame {
 		
 		createHorizontalLayout();
 		createVerticalLayout();
-		
-		layout.setHorizontalGroup( hpg );
-		layout.setVerticalGroup( vpg );
 	} // end method createLayout():void
 
 	private void createVerticalLayout() {
@@ -81,18 +87,25 @@ public class ListingGUI extends JFrame {
 		vpgInner.addComponent( listPanel, GroupLayout.DEFAULT_SIZE,
 			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
 		
+		vsgInner.addComponent( inputPanel, GroupLayout.PREFERRED_SIZE,
+			GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
+		
+		vsgInner.addPreferredGap( ComponentPlacement.RELATED );
+		
 		vsgInner.addComponent( buttonPanel, GroupLayout.PREFERRED_SIZE,
 			GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
 		
 		vsgInner.addPreferredGap( ComponentPlacement.RELATED );
 		
 		vsgInner.addComponent( creditPanel, GroupLayout.DEFAULT_SIZE,
-			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+			GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
 		
 		vpgInner.addGroup( vsgInner );
 		vsg.addGroup( vpgInner );
 		vsg.addContainerGap();
 		vpg.addGroup( Alignment.TRAILING, vsg);
+		
+		layout.setVerticalGroup( vpg );
 	} // end method createVerticalLayout():void
 
 	private void initGroups() {
@@ -102,7 +115,7 @@ public class ListingGUI extends JFrame {
 		hpgInner = layout.createParallelGroup( Alignment.TRAILING, false );
 		
 		vpg = layout.createParallelGroup( Alignment.LEADING );
-		vpgInner = layout.createParallelGroup( Alignment.TRAILING );
+		vpgInner = layout.createParallelGroup( Alignment.LEADING );
 		
 		hsg = layout.createSequentialGroup();
 		
@@ -122,5 +135,6 @@ public class ListingGUI extends JFrame {
 		buttonPanel = new ButtonPanel( "Functions" );
 		creditPanel = new CreditPanel( "Credits" );
 		listPanel = new ListPanel( "The List" );
+		inputPanel = new InputPanel( "Input" );
 	} // end method initPanels():void
 } // end class ListingGUI

@@ -29,7 +29,7 @@ public class CreditPanel extends EvilTreePanel {
 	// TODO: Evil Tree FC and its members? Testers? Everyone listing? Feedback?
 	// People who shared ideas? How to do mist000/iron mist?
 	public final static String[] CREDITS = { "Version " + main.Listing.version,
-			" ", "Made by: ", "Mist0__0__0 aka Iron Mist", " ",
+			" ", "Made by: ", "Mist0__0__0 / Iron Mist", " ",
 			"Special thanks to:", "Sskraeling", "Raven Risen", "Whiz",
 	"Evil Tree FC" };
 
@@ -61,10 +61,9 @@ public class CreditPanel extends EvilTreePanel {
 		hsg.addContainerGap(); // TODO: check if needed
 		hsg.addGroup( hpgInner );
 		hpg.addGroup( hsg );
+		layout.setHorizontalGroup( hpg );
 
 		vpg.addGroup( vsg );
-
-		layout.setHorizontalGroup( hpg );
 		layout.setVerticalGroup( vpg );
 
 		addLabels();
