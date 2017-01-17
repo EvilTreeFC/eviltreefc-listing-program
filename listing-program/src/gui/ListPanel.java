@@ -17,8 +17,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
 
-import world.World;
-
 /**
  * XXX
  *

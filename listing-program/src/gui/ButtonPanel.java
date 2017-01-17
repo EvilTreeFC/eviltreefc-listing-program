@@ -25,10 +25,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 @SuppressWarnings( "serial" )
 public class ButtonPanel extends EvilTreePanel {
 	private JButton[] buttons;
-//	private static String[] text = { "Submit", "Sap" ,"Tree", "50 %", "25 %",
-//			"KO", "Unk %", "Reset", "Settings" };
-	private static String[] text = { "SUBMIT", "SAP" ,"TREE", "50 %", "25 %",
-			"KO", "UNK %", "RESET", "SETTINGS" };
+	private static String[] text = { "Submit", "Sap" ,"Tree", "50 %", "25 %",
+			"KO", "Unk %", "Reset", "Settings" };
+//	private static String[] text = { "SUBMIT", "SAP" ,"TREE", "50 %", "25 %",
+//			"KO", "UNK %", "RESET", "SETTINGS" };
 	private ParallelGroup hpg, hpgInner, vpg;
 	private SequentialGroup hsg, vsg;
 	

@@ -16,23 +16,36 @@ public class InputPanel extends EvilTreePanel {
 	private final static String[] LABEL_TEXT = { "World: ", "Minutes: " };
 	private JTextField[] textFields;
 
-	private ParallelGroup hpg, hpgInner, vpg;
-	private SequentialGroup hsg, vsg;
+	private ParallelGroup hpg, hpgInner, vpg, vpgInnerWorld, vpgInnerMinutes;
+	private SequentialGroup hsg, hsgInnerWorld, hsgInnerMinutes, vsg;
 
 	public InputPanel( String title ) {
 		super( title );
 	} // end constructor(String)
 	
 	private void addComponentsHorizontally() {
-		for ( int i = 0; i < LABEL_TEXT.length; i++ ) {
+		hsgInnerMinutes.addComponent( labels[0] );
+		hsgInnerMinutes.addPreferredGap( ComponentPlacement.RELATED,
+			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		hsgInnerMinutes.addComponent( textFields[0], GroupLayout.PREFERRED_SIZE,
+			GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
 
-		} // end for
+		hsgInnerWorld.addComponent( labels[1] );
+		hsgInnerWorld.addPreferredGap( ComponentPlacement.RELATED,
+			GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		hsgInnerWorld.addComponent( textFields[1], GroupLayout.PREFERRED_SIZE,
+			GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
+		
 	} // end method addButtons():void
 	
 	private void addComponentsVertically() {
-		for ( int i = 0; i < LABEL_TEXT.length; i++ ) {
+		vpgInnerWorld.addComponent( labels[0] );
+        vpgInnerWorld.addComponent( textFields[0], GroupLayout.PREFERRED_SIZE,
+        	GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
 
-		} // end for
+        vpgInnerMinutes.addComponent( labels[1] );
+        vpgInnerMinutes.addComponent( textFields[1], GroupLayout.PREFERRED_SIZE,
+        	GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
 	} // end method addButtons():void
 
 	private void initGroups() {
@@ -40,8 +53,12 @@ public class InputPanel extends EvilTreePanel {
 		hpgInner = layout.createParallelGroup( Alignment.TRAILING, false );
 		
 		vpg = layout.createParallelGroup( Alignment.LEADING );
-		
+		vpgInnerWorld = layout.createParallelGroup( Alignment.BASELINE );
+		vpgInnerMinutes = layout.createParallelGroup( Alignment.BASELINE );
+
 		hsg = layout.createSequentialGroup();
+		hsgInnerWorld = layout.createSequentialGroup();
+		hsgInnerMinutes = layout.createSequentialGroup();
 		
 		vsg = layout.createSequentialGroup();
 	} // end method initGroups():void
@@ -71,45 +88,40 @@ public class InputPanel extends EvilTreePanel {
 
 	private void createHorizontalLayout() {
 		addComponentsHorizontally();
+
+		hsg.addContainerGap();
+		
+		hpgInner.addGroup( hsgInnerMinutes );
+		hpgInner.addGroup( hsgInnerWorld );
+		
+		hsg.addGroup( hpgInner );
+        hsg.addGap( 0, 0, Short.MAX_VALUE );
+        hsg.addContainerGap( GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		
+        hpg.addGroup( hsg );
+        
+		layout.setHorizontalGroup( hpg );
 	} // end method createHorizontalLayout():void
 
 	@Override
 	protected void createLayout() {
 		createHorizontalLayout();
 		createVerticalLayout();
-		
-		layout.setHorizontalGroup(
-	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(layout.createSequentialGroup()
-	                .addContainerGap()
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addComponent(labels[0])
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                        .addComponent(textFields[0], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addComponent(labels[1])
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                        .addComponent(textFields[1], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-	                		.addGap(0, 0, Short.MAX_VALUE)
-	                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-	        );
-		layout.setVerticalGroup(
-	        		layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(layout.createSequentialGroup()
-	                .addContainerGap()
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                    .addComponent(labels[0])
-	                    .addComponent(textFields[0], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGap(14, 14, 14)
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                    .addComponent(labels[1])
-	                    .addComponent(textFields[1], javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-	        );
 	} // end method createLayout():void
 
 	private void createVerticalLayout() {
 		addComponentsVertically();
+		
+		int gapSize = 14;
+		
+		vsg.addContainerGap();
+        vsg.addGroup( vpgInnerWorld );
+        vsg.addGap( gapSize, gapSize, gapSize );
+        vsg.addGroup( vpgInnerMinutes );
+        vsg.addContainerGap( GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE );
+		
+		vpg.addGroup( vsg );
+
+		layout.setVerticalGroup( vpg );
 	} // end method createVerticalLayout():void
 } // end class InputPanel
