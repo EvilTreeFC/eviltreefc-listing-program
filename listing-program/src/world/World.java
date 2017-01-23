@@ -13,11 +13,15 @@ package world;
  * @see      report.Report
  * @see      world.Worlds
  */
-public class World {
+public class World implements Comparable<World> {
 	/**
 	 * The integer that is associated with this {@code World}.
 	 */
 	private int world;
+	
+	private int minutes;
+	
+	private long timeReported;
 	
 	/**
 	 * Standard constructor.
@@ -29,6 +33,41 @@ public class World {
 		// Potential inheritance issues if the code is changed.
 		setWorld( world );
 	} // end constructor(int)
+	
+	public World( int world, int minutes, long timeReported ) {
+		this.world = world;
+		this.minutes = minutes;
+		this.timeReported = timeReported;
+	} // end constructor(int)
+
+	@Override
+	public int compareTo( World world ) {
+		if ( world == null ) {
+			return 1;
+		} // end if
+		
+		return Integer.valueOf( minutes ).compareTo( world.getMinutes() );
+	} // end method compareTo(World):int
+
+	public int getMinutes() {
+		return minutes;
+	} // end method getMinutes():int
+
+	public long getTimeReported() {
+		return timeReported;
+	} // end method getTimeReported():long
+	
+	public int getWorld() {
+		return world;
+	} // end method getWorld():int
+
+	public void setMinutes( int minutes ) {
+		this.minutes = minutes;
+	} // end method setMinutes(int):void
+
+	public void setTimeReported( long timeReported ) {
+		this.timeReported = timeReported;
+	} // end method setTimeReported(long):void
 	
 	/**
 	 * Standard set method
@@ -61,6 +100,23 @@ public class World {
 	 */
 	@Override
 	public String toString() {
-		return "W" + toInt();
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append( "W" );
+		builder.append( world );
+		builder.append( " " );
+		
+		if ( minutes == 0 ) {
+			builder.append( "NOW" );
+		} else {
+			builder.append( minutes );
+			builder.append( " min" );
+			
+			if ( !(minutes == 1) ) {
+				builder.append( "s" ); // Add s since minutes is greater than 1.
+			} // end if
+		} // end if...else
+		
+		return builder.toString();
 	} // end method toString():String
 } // end class World

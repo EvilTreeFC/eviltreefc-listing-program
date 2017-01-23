@@ -5,6 +5,8 @@
 
 package gui;
 
+import controller.ListingController;
+
 import java.awt.Color;
 
 import javax.swing.GroupLayout;
@@ -33,11 +35,14 @@ public class ListingGUI extends JFrame {
 	private GroupLayout layout;
 	private ListPanel listPanel;
 	
+	private ListingController control;
+	
 	private ParallelGroup hpg, hpgInner, vpg, vpgInner;
 	private SequentialGroup hsg, vsg, vsgInner;
 
 	public ListingGUI() {
 		initLayout();
+		initControllerSystem();
 		createLayout();
 
 		getContentPane().setBackground( BG_COLOUR );
@@ -122,6 +127,20 @@ public class ListingGUI extends JFrame {
 		vsg = layout.createSequentialGroup();
 		vsgInner = layout.createSequentialGroup();
 	} // end method initGroups():void
+
+	private void initControllerSystem() {
+		control = new ListingController();
+		
+		control.setButtonPanel( buttonPanel );
+		control.setCreditPanel( creditPanel );
+		control.setInputPanel( inputPanel );
+		control.setListPanel( listPanel );
+		
+		buttonPanel.setListingController( control );
+		creditPanel.setListingController( control );
+		inputPanel.setListingController( control );
+		listPanel.setListingController( control );
+	} // end method initControllerSystem():void
 
 	/**
 	 * Initialises instance variables needed for the layout.

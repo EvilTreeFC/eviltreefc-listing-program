@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 import javax.swing.border.TitledBorder;
 
+import controller.ListingController;
+
 /**
  * XXX
  *
@@ -31,6 +33,11 @@ public abstract class EvilTreePanel extends JPanel {
 	 * The {@code LayoutManager} to be used by this {@code EvilTreePanel}.
 	 */
 	protected GroupLayout layout;
+	
+	/**
+	 * Controller that makes communication between panels easier.
+	 */
+	protected ListingController control;
 	
 	/**
 	 * The title of this {@code EvilTreePanel}.
@@ -64,13 +71,23 @@ public abstract class EvilTreePanel extends JPanel {
 	} // end constructor()
 	
 	/**
+	 * Creating the visual layout; setting groups, adding components, adding
+	 * gaps, etc.
+	 */
+	protected abstract void createLayout();
+	
+	/**
 	 * Initialises variables and/or components used in the panel's layout.
 	 */
 	protected abstract void initLayout();
 	
 	/**
-	 * Creating the visual layout; setting groups, adding components, adding
-	 * gaps, etc.
+	 * Initialises the {@code ListingController}.
+	 * 
+	 * @param  control
+	 *         Controller that makes communication between panels easier.
 	 */
-	protected abstract void createLayout();
+	protected void setListingController( ListingController control ) {
+		this.control = control;
+	} // end method setListingController(ListingController):void
 } // end class EvilTreePanel

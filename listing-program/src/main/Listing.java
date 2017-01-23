@@ -21,6 +21,10 @@ public class Listing {
 	 */
 	public final static String version = "2.0";
 	
+	/*
+	 * TODO: fix colours in the render class (inside of ListPanel)
+	 */
+	
 	// Main method starts program execution.
 	public static void main( String[] args ) {
 		new ListingGUI();

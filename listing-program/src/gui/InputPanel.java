@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -12,6 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings( "serial" )
 public class InputPanel extends EvilTreePanel {
+	private InputListener inputListener;
 	private JLabel[] labels;
 	private final static String[] LABEL_TEXT = { "World: ", "Minutes: " };
 	private JTextField[] textFields;
@@ -47,6 +51,18 @@ public class InputPanel extends EvilTreePanel {
         vpgInnerMinutes.addComponent( textFields[1], GroupLayout.PREFERRED_SIZE,
         	GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE );
 	} // end method addButtons():void
+	
+	public JTextField getMinutesTextField() {
+		return textFields[1];
+	} // end method getMinutesTextField():JTextField
+	
+	public JTextField[] getTextFields() {
+		return textFields;
+	} // end method getTextFields():JTextField[]
+	
+	public JTextField getWorldTextField() {
+		return textFields[0];
+	} // end method getWorldTextField():JTextField
 
 	private void initGroups() {
 		hpg = layout.createParallelGroup( Alignment.LEADING );
@@ -80,9 +96,12 @@ public class InputPanel extends EvilTreePanel {
 
 	private void initTextFields() {
 		textFields = new JTextField[LABEL_TEXT.length];
+		inputListener = new InputListener();
 		
 		for ( int i = 0; i < textFields.length; i++ ) {
 			textFields[i] = new JTextField( 3 );
+			textFields[i].addActionListener( inputListener );
+			textFields[i].setActionCommand( LABEL_TEXT[i] );
 		} // end for
 	} // end method initTextFields():void
 
@@ -124,4 +143,11 @@ public class InputPanel extends EvilTreePanel {
 
 		layout.setVerticalGroup( vpg );
 	} // end method createVerticalLayout():void
+	
+	private class InputListener implements ActionListener {
+		@Override
+		public void actionPerformed( ActionEvent e ) {
+			control.handleInputEvent( e );
+		} // end method actionPerformed(ActionEvent):void
+	} // end class ButtonListener
 } // end class InputPanel

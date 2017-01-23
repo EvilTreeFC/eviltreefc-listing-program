@@ -5,10 +5,13 @@
 
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-
+import javax.swing.UIManager;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
@@ -24,11 +27,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
  */
 @SuppressWarnings( "serial" )
 public class ButtonPanel extends EvilTreePanel {
+	private ButtonListener buttonListener;
 	private JButton[] buttons;
 	private static String[] text = { "Submit", "Sap" ,"Tree", "50 %", "25 %",
-			"KO", "Unk %", "Reset", "Settings" };
-//	private static String[] text = { "SUBMIT", "SAP" ,"TREE", "50 %", "25 %",
-//			"KO", "UNK %", "RESET", "SETTINGS" };
+			"KO", "Unk %", "Undo", "Reset", "Settings" };
 	private ParallelGroup hpg, hpgInner, vpg;
 	private SequentialGroup hsg, vsg;
 	
@@ -40,6 +42,8 @@ public class ButtonPanel extends EvilTreePanel {
 	 */
 	public ButtonPanel( String title ) {
 		super( title );
+		
+		
 	} // end constructor(String)
 	
 	private void addButtonsHorizontally() {
@@ -98,9 +102,14 @@ public class ButtonPanel extends EvilTreePanel {
 
 	private void initButtons() {
 		buttons = new JButton[text.length];
+		buttonListener = new ButtonListener();
+		
+		// Allows for the ENTER and SPACEBAR keys to trigger events.
+		UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
 		
 		for ( int i = 0; i < buttons.length; i++ ) {
 			buttons[i] = new JButton( text[i] );
+			buttons[i].addActionListener( buttonListener );
 		} // end for
 	} // end method initButtons():void
 
@@ -121,4 +130,11 @@ public class ButtonPanel extends EvilTreePanel {
 		initButtons();
 		initGroups();
 	} // end method initLayout():void
+	
+	private class ButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed( ActionEvent e ) {
+			control.handleButtonEvent( e );
+		} // end method actionPerformed(ActionEvent):void
+	} // end class ButtonListener
 } // end class ButtonPanel
