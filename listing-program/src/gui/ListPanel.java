@@ -15,7 +15,6 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 import world.World;
@@ -63,18 +62,12 @@ public class ListPanel extends EvilTreePanel {
 			int grayValue = 128;
 			Color gray = new Color( grayValue, grayValue, grayValue );
 			
-			long timeReported = report.getTimeReported();
 			long timeDue = report.getTimeReported() + 
 				TimeUnit.MINUTES.toMillis( report.getMinutes() );
-			long timeUntilDue = timeDue - timeReported;
 			long timeNow = System.currentTimeMillis();
 			long nowMinusDue = timeDue - timeNow; // find better name
 			int counter = 0;
 			
-//			JOptionPane.showMessageDialog( null,  TimeUnit.MILLISECONDS.toMinutes( nowMinusDue ) );
-//			JOptionPane.showMessageDialog( null,  TimeUnit.MINUTES.toMillis( 145 ) );
-			
-			// TODO: FIX
 			while ( TimeUnit.MILLISECONDS.toMinutes( nowMinusDue ) < -15 ) {
 				nowMinusDue += TimeUnit.MINUTES.toMillis( 145 );
 				counter++;
@@ -93,9 +86,6 @@ public class ListPanel extends EvilTreePanel {
 				Color fg = gray;
 				setForeground( fg );
 			} else {
-				JOptionPane.showMessageDialog( null,  System.currentTimeMillis() );
-//				JOptionPane.showMessageDialog( null,  counter );
-//				JOptionPane.showMessageDialog( null,  nowMinusDue );
 				setForeground( list.getForeground() );
 			} // end if...else
 			return this;
